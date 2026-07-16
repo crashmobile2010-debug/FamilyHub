@@ -25,9 +25,9 @@ const STATIONS = [
 ];
 
 /* ---- Cloud sync (Supabase) — docs/SETUP.md §3 ---- */
-const SUPABASE_URL = "";        // e.g. https://abcdefgh.supabase.co
-const SUPABASE_ANON_KEY = "";   // your project's public anon key
-const FAMILY_CODE = "our-home"; // any shared word — use the SAME one on every device + phones.
+const SUPABASE_URL = "https://sghvsprzleszdxbxvzij.supabase.co";        // e.g. https://abcdefgh.supabase.co
+const SUPABASE_ANON_KEY = "sb_publishable_Lvq3pSuYkEGgeGla0ndTwA_9C5_wrM8";   // your project's public anon key
+const FAMILY_CODE = "oakleyrocket"; // any shared word — use the SAME one on every device + phones.
                                 // Pick something obscure; it is effectively your family's password.
 
 /* ---- Family members ---- */
