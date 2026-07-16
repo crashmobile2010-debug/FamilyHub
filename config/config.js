@@ -7,7 +7,7 @@
    ==================================================================== */
 
 /* ---- Google (Calendar + Tasks) ---- */
-const GOOGLE_CLIENT_ID = "";              // OAuth Web client ID — docs/SETUP.md §2
+const GOOGLE_CLIENT_ID = "624966985293-8laquv5cpg7fb5kovslmdvqfsdkq17lr.apps.googleusercontent.com";              // OAuth Web client ID — docs/SETUP.md §2
 const CALENDAR_ID = "primary";            // or a shared family calendar's ID
 
 /* ---- Location + display ---- */
