@@ -1,0 +1,12 @@
+{
+  "name": "family-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cork-board family kiosk dashboard — modular source, builds to a single index.html. Zero dependencies.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs && node --check .build/bundle.js && echo ✓ JS bundle syntax OK",
+    "dev": "node build.mjs && node tools/serve.mjs"
+  }
+}

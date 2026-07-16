@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>The Family Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+<style>
+/*__INLINE_CSS__*/
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- page dots + edge chevrons -->
+<nav class="pgdots" id="pgdots">
+  <button class="pgdot" data-pg="0" title="Entertainment"></button>
+  <button class="pgdot on" data-pg="1" title="Home"></button>
+  <button class="pgdot" data-pg="2" title="Organize"></button>
+</nav>
+<button class="chev l" id="chev-l" aria-label="Previous page">‹</button>
+<button class="chev r" id="chev-r" aria-label="Next page">›</button>
+
+<main class="pager" id="pager">
+
+  <!-- ══════════ PAGE 0 · ENTERTAINMENT (swipe right from home) ══════════ -->
+  <section class="page pg-fun" id="page-fun">
+    <div class="pg-head"><h1>Entertainment</h1><p class="sub">photos · music</p></div>
+    <div class="fun-grid">
+      <div class="glass photo-card">
+        <div class="frame">
+          <div class="shot" id="shot"><img id="photo" alt=""></div>
+          <div class="pcap" id="pcap" contenteditable="true" spellcheck="false"></div>
+        </div>
+        <div class="dots" id="dots"></div>
+        <input type="file" id="file" accept="image/*" multiple hidden>
+      </div>
+      <div class="glass music-card">
+        <div class="nowp">
+          <div class="disc" id="disc"></div>
+          <div class="trackinfo"><div class="nm" id="track">Calm</div><div class="st" id="tstate">paused</div></div>
+        </div>
+        <div class="transport">
+          <button class="tbtn" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5L9 12l11 7z"/></svg></button>
+          <button class="tbtn play" id="play" aria-label="Play"><svg viewBox="0 0 24 24" fill="currentColor" id="playicon"><path d="M7 5l12 7-12 7z"/></svg></button>
+          <button class="tbtn" id="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5l11 7L4 19z"/></svg></button>
+        </div>
+        <div class="vol">🔈<input type="range" id="vol" min="0" max="100" value="55">🔊</div>
+        <div class="bigrow">
+          <button class="bigbtn" id="btn-photo"><span>📷</span>Add photos</button>
+          <button class="bigbtn" id="btn-song"><span>🎵</span>Next song</button>
+          <button class="bigbtn" id="btn-bt"><span>🎧</span>Bluetooth</button>
+        </div>
+      </div>
+    </div>
+    <div id="ytplayer" style="display:none"></div>
+  </section>
+
+  <!-- ══════════ PAGE 1 · HOME (calendar is the main screen) ══════════ -->
+  <section class="page pg-home" id="page-home">
+    <header class="home-top">
+      <div class="wxnow">
+        <div class="badge" id="wx-icon"></div>
+        <div><div class="t" id="wx-temp">—°</div><div class="meta" id="wx-meta">—</div></div>
+        <div class="fc" id="forecast"></div>
+      </div>
+      <div class="idrow">
+        <div class="family" id="family"></div>
+        <button class="gbtn" id="signin">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.8z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.6c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.9-2.5 3.2-4.6 6-4.6z"/></svg>
+          <span id="signin-label">Sign in</span>
+        </button>
+      </div>
+    </header>
+    <div class="home-main">
+      <div class="home-left">
+        <div class="clock" id="clock">— —</div>
+        <div class="home-date" id="date"></div>
+        <div class="greet" id="greet"></div>
+        <div class="agenda">
+          <h3>Up next</h3>
+          <div class="events" id="events"></div>
+        </div>
+      </div>
+      <div class="home-right">
+        <div class="month-label" id="month-label">Month</div>
+        <div class="mgrid" id="mgrid"></div>
+      </div>
+    </div>
+    <div class="ticker"><span class="tklabel">family wire</span>
+      <div class="tkclip"><div class="tktrack" id="ticker"></div></div>
+    </div>
+  </section>
+
+  <!-- ══════════ PAGE 2 · ORGANIZE (swipe left from home) ══════════ -->
+  <section class="page pg-do" id="page-do">
+    <div class="pg-head"><h1>Organize</h1><p class="sub">to-dos · cooking roster · notes</p></div>
+    <div class="do-grid">
+      <div class="glass docard">
+        <h2>✅ To-do</h2>
+        <div class="lists" id="lists"></div>
+      </div>
+      <div class="glass docard">
+        <h2>🍽️ Cooking roster</h2>
+        <div class="mealrows" id="mealrows"></div>
+      </div>
+      <div class="glass docard">
+        <h2>📌 Notes</h2>
+        <div class="notewrap" id="notewrap"></div>
+        <div class="notebar" id="authchips"></div>
+        <div class="notebar">
+          <input id="noteinput" placeholder="write a note…" maxlength="120">
+          <button class="add" id="addnote">＋</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- alerts stack (home notifications) -->
+<div class="alerts" id="alerts"></div>
+
+<div class="lightbox" id="lightbox"><img id="big" alt=""></div>
+
+<div class="sheet" id="daysheet">
+  <div class="sheet-card">
+    <button class="sh-close" id="ds-close">×</button>
+    <h3 id="daysheet-date"></h3>
+    <div id="daysheet-body"></div>
+  </div>
+</div>
+
+<div class="sheet" id="btsheet">
+  <div class="sheet-card">
+    <button class="sh-close" id="bt-close">×</button>
+    <h3>🎧 Play through a speaker</h3>
+    <div class="btsteps">
+      <p>Music follows whatever this device's audio is connected to:</p>
+      <p><b>1.</b> Open this device's <b>Bluetooth settings</b> (swipe down from the top on Android / Control Centre on iPad).</p>
+      <p><b>2.</b> Put your speaker or amp in pairing mode and tap it in the list.</p>
+      <p><b>3.</b> Come back and press play — the hub's audio moves to the speaker automatically.</p>
+      <p class="dim">Already paired once? Just tap the speaker's name to reconnect.</p>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="settings">
+  <div class="sheet-card">
+    <button class="sh-close" id="set-close">×</button>
+    <h3>Settings</h3>
+    <div id="set-body"></div>
+    <p class="set-hint">🔊 To play through your amp, pair this device to it in the system's Bluetooth settings — the hub's audio will follow automatically.</p>
+    <div class="set-actions">
+      <button class="set-btn ghost" id="set-clear">Clear data</button>
+      <button class="set-btn" id="set-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/*__INLINE_JS__*/
+</script>
+</body>
+</html>
